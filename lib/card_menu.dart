@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nefos/add_credits.dart';
-import 'package:nefos/card_activation.dart';
+import 'package:nefos/modals/add_credits.dart';
+import 'package:nefos/modals/card_activation.dart';
+import 'package:nefos/modals/recent_transactions.dart';
 
 class CardMenu extends StatefulWidget {
   const CardMenu({super.key});
@@ -21,6 +22,13 @@ class _CardMenuState extends State<CardMenu> {
     showModalBottomSheet(
       context: context,
       builder: (ctx) => const CardActivation(),
+    );
+  }
+
+  void _presentRecentTransactions() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const RecentTransactions(),
     );
   }
 
@@ -52,18 +60,21 @@ class _CardMenuState extends State<CardMenu> {
                   ]),
                 ),
               ),
-              Card(
-                elevation: 15,
-                child: Column(children: [
-                  Image.asset(
-                    'assets/images/transact.jpg',
-                    width: 175,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Text('Recent Transactions'),
-                ]),
+              GestureDetector(
+                onTap: _presentRecentTransactions,
+                child: Card(
+                  elevation: 15,
+                  child: Column(children: [
+                    Image.asset(
+                      'assets/images/transact.jpg',
+                      width: 175,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text('Recent Transactions'),
+                  ]),
+                ),
               ),
             ],
           ),
