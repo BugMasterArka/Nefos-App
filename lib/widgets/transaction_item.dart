@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nefos/models/students/student.dart';
 import 'package:nefos/models/transactions/transaction.dart';
+import 'package:nefos/models/retailers/retailer.dart';
 import 'package:intl/intl.dart';
 
 final formatter = DateFormat.yMd();
 
 class TransactionItem extends StatelessWidget {
-  const TransactionItem(this.transaction, this.student, {super.key});
+  const TransactionItem(this.transaction, this.student, this.retailer,
+      {super.key});
 
   final Transaction transaction;
   final Student student;
+  final Retailer retailer;
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +49,14 @@ class TransactionItem extends StatelessWidget {
                       const SizedBox(
                         width: 5,
                       ),
-                      Text(transaction.retailerId),
+                      Text(retailer.name),
                     ],
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 5,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

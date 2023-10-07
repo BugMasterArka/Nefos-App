@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nefos/models/retailers/all_retailers.dart';
 
 import 'package:nefos/data/dummy_json.dart';
 import 'package:nefos/models/students/all_students.dart';
 import 'package:nefos/models/transactions/all_transactions.dart';
 import 'package:nefos/models/students/student.dart';
 import 'package:nefos/models/transactions/transaction.dart';
+import 'package:nefos/models/retailers/retailer.dart';
 import 'package:nefos/widgets/transaction_item.dart';
 
 class RecentTransactions extends StatefulWidget {
@@ -22,6 +24,9 @@ class _RecentTransactionsState extends State<RecentTransactions> {
 
   final List<Student> _students =
       AllStudents(students: registeredPeople).mappedStudents;
+
+  final List<Retailer> _retailers =
+      AllRetailers(retailers: registeredRetailers).mappedRetailers;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,7 +34,17 @@ class _RecentTransactionsState extends State<RecentTransactions> {
       child: ListView.builder(
         itemCount: _recentTransactions.length,
         itemBuilder: (ctx, index) {
-          return TransactionItem(_recentTransactions[index],_students.where((student) => _recentTransactions[index].studentId==student.id).toList()[0]);
+          return TransactionItem(
+            _recentTransactions[index],
+            _students
+                .where((student) =>
+                    _recentTransactions[index].studentId == student.id)
+                .toList()[0],
+            _retailers
+                .where((retailer) =>
+                    _recentTransactions[index].retailerId == retailer.id)
+                .toList()[0],
+          );
         },
       ),
     );

@@ -37,6 +37,12 @@ class _CardMenuState extends State<CardMenu> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hello 20BCE7349'),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Text('Log Out'),
+          ),
+        ],
       ),
       body: Column(
         children: [
