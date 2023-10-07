@@ -19,12 +19,16 @@ class RecentTransactions extends StatefulWidget {
 }
 
 class _RecentTransactionsState extends State<RecentTransactions> {
+
+  // * registeredTransactions must be fetched using HTTPS requests
   final List<Transaction> _recentTransactions =
       AllTransactions(transactions: registeredTransactions).mappedTransactions;
 
+  // * registeredPeople must be fetched using HTTPS requests
   final List<Student> _students =
       AllStudents(students: registeredPeople).mappedStudents;
 
+  // * registeredRetailers must be fetched using HTTPS requests
   final List<Retailer> _retailers =
       AllRetailers(retailers: registeredRetailers).mappedRetailers;
   @override
