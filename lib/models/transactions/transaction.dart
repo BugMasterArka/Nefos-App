@@ -9,6 +9,6 @@ class Transaction {
   String transactionId;
   String studentId;
   String retailerId;
-  double credits;
-  DateTime timestamp;
+  int credits;
+  String timestamp;
 }

@@ -4,12 +4,12 @@ class AllRetailers {
   AllRetailers({required this.retailers})
       : mappedRetailers = retailers
             .map((retailer) => Retailer(
-                  id: retailer['id'],
-                  name: retailer['name'],
-                  walletId: retailer['wallet_id'],
-                  password: retailer['password'],
-                  balance: retailer['balance'],
-                  phone: retailer['phone_number'],
+                  id: retailer['ID'],
+                  name: retailer['NAME'],
+                  walletId: retailer['WALLET_ID'],
+                  password: retailer['PASSWORD'],
+                  balance: retailer['BALANCE'],
+                  phone: retailer['PHONE_NUMBER'],
                 ))
             .toList();
 

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nefos/models/students/student.dart';
 import 'package:nefos/models/transactions/transaction.dart';
 import 'package:nefos/models/retailers/retailer.dart';
-import 'package:intl/intl.dart';
+// import 'package:intl/intl.dart';
 
-final formatter = DateFormat.yMd();
+// final formatter = DateFormat.yMd();
 
 class TransactionItem extends StatelessWidget {
   const TransactionItem(this.transaction, this.student, this.retailer,
@@ -13,6 +13,12 @@ class TransactionItem extends StatelessWidget {
   final Transaction transaction;
   final Student student;
   final Retailer retailer;
+
+  String formattedTime(String time) {
+    String date = (time.split(""))[0];
+    List<String> yymmdd = date.split("-");
+    return '${yymmdd[2]}/${yymmdd[1]}/${yymmdd[0]}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +91,7 @@ class TransactionItem extends StatelessWidget {
                         Icons.calendar_month,
                       ),
                       Text(
-                        formatter.format(transaction.timestamp),
+                        transaction.timestamp,
                       ),
                     ],
                   ),

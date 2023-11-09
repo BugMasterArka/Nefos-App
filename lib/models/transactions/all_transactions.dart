@@ -5,11 +5,12 @@ class AllTransactions {
       : mappedTransactions = transactions
             .map(
               (transaction) => Transaction(
-                  transactionId: transaction['t_id'] as String,
-                  studentId: transaction['student_id'] as String,
-                  retailerId: transaction['retailer_id'] as String,
-                  credits: transaction['credits'] as double,
-                  timestamp: transaction['timestamp'] as DateTime),
+                transactionId: transaction['T_ID'] as String,
+                studentId: transaction['STUDENT_ID'] as String,
+                retailerId: transaction['RETAILER_ID'] as String,
+                credits: transaction['CREDITS'] as int,
+                timestamp: transaction['TIMESTAMP'] as String,
+              ),
             )
             .toList();
 

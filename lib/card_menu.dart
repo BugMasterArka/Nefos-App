@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:nefos/login.dart';
 import 'package:nefos/modals/add_credits.dart';
 import 'package:nefos/modals/card_activation.dart';
 import 'package:nefos/modals/recent_transactions.dart';
+import 'package:nefos/models/students/student.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CardMenu extends StatefulWidget {
   const CardMenu({super.key});
@@ -12,6 +16,34 @@ class CardMenu extends StatefulWidget {
 }
 
 class _CardMenuState extends State<CardMenu> {
+  String? _username;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        initializeUser();
+      });
+    });
+  }
+
+  void initializeUser() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    if (pref.getString('user') == null && context.mounted) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Unable to fetch Student'),
+        ),
+      );
+      return;
+    }
+    // ? should be changed to student.fromJson2()
+    Student student = Student.fromJson2(jsonDecode(pref.getString('user')!));
+    _username = student.name;
+  }
+
   void _presentCreditsAddition() {
     showModalBottomSheet(
       context: context,
@@ -45,7 +77,8 @@ class _CardMenuState extends State<CardMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello 20BCE7349'),
+        title: Text('Hello $_username'),
+        // title: const Text('Hello 20BCE7349'),
         actions: [
           TextButton(
             onPressed: _onPressLogOut,

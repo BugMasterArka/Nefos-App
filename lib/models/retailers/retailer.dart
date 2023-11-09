@@ -11,7 +11,7 @@ class Retailer {
   final String name;
   final String id;
   final String walletId;
-  final double balance;
+  final int balance;
   final String phone;
   final String password;
 }

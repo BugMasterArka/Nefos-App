@@ -8,7 +8,8 @@ var registeredPeople = [
     "phone_no": "8101902952",
     "password": "skdecwue8ceciihqwco2ich2oh3h3l2lkenlsdccsod8cyaa",
     "pin": 1234,
-    "status": true
+    "status": true,
+    "otp":0
   },
   {
     "id": "wyo5dof",
@@ -19,7 +20,8 @@ var registeredPeople = [
     "phone_no": "8165920364",
     "password": "qoe8fyqfho8fy3ilfi3nlkanpa0ejepoece;jou03kjbLBEN",
     "pin": 2345,
-    "status": true
+    "status": true,
+    "otp":0
   },
   {
     "id": "1udo7sy",
@@ -30,7 +32,8 @@ var registeredPeople = [
     "phone_no": "7098726379",
     "password": "eo9fywep9w3rhp2hf32ruwe-f0uwfh-0f3f90fupn33uvnv3",
     "pin": 3456,
-    "status": false
+    "status": false,
+    "otp":0
   },
 ];
 
