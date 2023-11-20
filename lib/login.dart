@@ -17,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _regnController = TextEditingController();
   final _otpController = TextEditingController();
+
   @override
   void dispose() {
     _regnController.dispose();
@@ -32,9 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return Student.fromJson2(fetchedJson);
     } else {
       Student? student;
-      Map<String, dynamic> request = {
-        "reg_no": regnNumber
-      };
+      Map<String, dynamic> request = {"reg_no": regnNumber};
 
       // ? request needs to accept this 2 things as body (regn number and OTP)
 
@@ -124,18 +123,20 @@ class _LoginScreenState extends State<LoginScreen> {
   void _testLogin() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
 
-    Map<String, dynamic> json = [{
-      "id": "oqhdoqd",
-      "name": "Arka Lodh",
-      "reg_no": "20BCE7349",
-      "wallet_id": "ceocucqoeqyo39729383t2vkq3gdiqugd31i2dggkjg2o3u",
-      "balance": 1238.00,
-      "phone_no": "8101902952",
-      "password": "skdecwue8ceciihqwco2ich2oh3h3l2lkenlsdccsod8cyaa",
-      "pin": 1234,
-      "status": true,
-      "otp": null
-    }][0];
+    Map<String, dynamic> json = [
+      {
+        "id": "oqhdoqd",
+        "name": "Arka Lodh",
+        "reg_no": "20BCE7349",
+        "wallet_id": "ceocucqoeqyo39729383t2vkq3gdiqugd31i2dggkjg2o3u",
+        "balance": 1238.00,
+        "phone_no": "8101902952",
+        "password": "skdecwue8ceciihqwco2ich2oh3h3l2lkenlsdccsod8cyaa",
+        "pin": 1234,
+        "status": true,
+        "otp": null
+      }
+    ][0];
 
     await pref.setString('user', jsonEncode(json));
     if (context.mounted) {
@@ -151,11 +152,11 @@ class _LoginScreenState extends State<LoginScreen> {
   // ! test function 2 for login
   void _testLogin2() {
     Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (ctx) => const CardMenu(),
-        ),
-      );
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => const CardMenu(),
+      ),
+    );
   }
 
   @override

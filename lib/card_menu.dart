@@ -65,12 +65,16 @@ class _CardMenuState extends State<CardMenu> {
     );
   }
 
-  void _onPressLogOut() {
-    Navigator.of(context).pushReplacement(
+  void _onPressLogOut() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.clear();
+    if(context.mounted){
+      Navigator.of(context).pushReplacement(
       MaterialPageRoute(
         builder: (ctx) => const LoginScreen(),
       ),
     );
+    }
   }
 
   @override
