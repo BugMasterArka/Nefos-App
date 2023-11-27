@@ -110,17 +110,24 @@ class _RecentTransactionsState extends State<RecentTransactions> {
 
       final response = await http.post(url, body: request);
 
-      if ((response.statusCode != 200 || response.body.isEmpty) &&
-          context.mounted) {
+      if ((response.statusCode != 200) && context.mounted) {
         print('transaction error 1 ');
+        print(response.statusCode);
+        print(response.body);
         Navigator.of(context).pop();
         return transactions;
       }
-      print(response.body);
-      transactions = AllTransactions(
-              transactions: (jsonDecode(response.body) as List)
-                  .cast<Map<String, dynamic>>())
-          .mappedTransactions;
+      print(response.body.length);
+      if (response.body.length == 2) {
+        print('transaction typecast error');
+        return [];
+      } else {
+        var fetchedTransactions =
+            (jsonDecode(response.body) as List).cast<Map<String, dynamic>>();
+        print(fetchedTransactions);
+        transactions = AllTransactions(transactions: fetchedTransactions)
+            .mappedTransactions;
+      }
       return transactions;
     } catch (e) {
       print('transaction error 2');
@@ -178,6 +185,7 @@ class _RecentTransactionsState extends State<RecentTransactions> {
 
   Widget noTransactions = Center(
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Image.asset(
           'assets/images/no-transactions.png',
@@ -186,7 +194,11 @@ class _RecentTransactionsState extends State<RecentTransactions> {
         const SizedBox(
           height: 30,
         ),
-        const Text('Uh oh... No Transactions Yet'),
+        const Text(
+          'Uh oh... No Transactions Yet',
+          style: TextStyle(fontSize: 20),
+          softWrap: true,
+        ),
       ],
     ),
   );
